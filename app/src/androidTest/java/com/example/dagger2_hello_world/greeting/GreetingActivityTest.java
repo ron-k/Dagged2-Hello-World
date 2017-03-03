@@ -47,7 +47,7 @@ public class GreetingActivityTest {
 
     @BeforeClass
     public static void staticSetUp() throws Exception {
-        UserAgeModel userAgeModel = UserAgeModel.create(getTargetContext());
+        UserAgeModel userAgeModel = new UserAgeModel(getTargetContext());
         userAgeModel.setFirstTimeRun(userAgeModel.now());
     }
 
@@ -71,7 +71,7 @@ public class GreetingActivityTest {
 
     @Before
     public void setUp() throws Exception {
-        userAgeModel = UserAgeModel.create(getTargetContext());
+        userAgeModel = new UserAgeModel(getTargetContext());
         instrumentation = getInstrumentation();
     }
 

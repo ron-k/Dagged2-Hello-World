@@ -4,7 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.example.dagger2_hello_world.ApplicationScope;
+
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by ABiS on 2017-03-03.
@@ -20,9 +25,9 @@ public class UserAgeModel {
         setUserAgeIfAbsent();
     }
 
-    @NonNull
-    public static UserAgeModel create(Context context) {
-        return new UserAgeModel(context.getSharedPreferences(FeatureModule.TAG, Context.MODE_PRIVATE));
+    @Inject
+    UserAgeModel(@Named(ApplicationScope.TAG) Context context) {
+        this(context.getSharedPreferences(GreetingScope.TAG, Context.MODE_PRIVATE));
     }
 
     public long getUserAgeMillis() {
