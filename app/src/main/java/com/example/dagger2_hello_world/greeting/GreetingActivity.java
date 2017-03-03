@@ -17,7 +17,12 @@ public class GreetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_greeting);
         mainTextView = (TextView) findViewById(R.id.main_text);
-        greetingModel = new GreetingModel(this);
+        greetingModel = new GreetingModel(this, UserAgeModel.create(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         bindModelToView();
     }
 

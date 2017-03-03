@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Dagger2-Hello-World!</string>
-    <string name="greeting_text">Hello World!</string>
+    <string name="greeting_text_newbie">Welcome newbie!</string>
+    <!--  1 - user age in human string -->
+    <string name="greeting_text_returning">Welcome back! You\'re using the app for %1$s</string>
+    <!--  1 - duration -->
+    <string name="duration_minutes">%1$d minutes</string>
 </resources>
