@@ -12,25 +12,24 @@ import java.util.concurrent.TimeUnit;
  * Created by ABiS on 2017-03-03.
  */
 
-public class GreetingModel {
+class GreetingModel {
     private final Context context;
-    private final UserAgeModel userAgeModel;
 
-    public GreetingModel(@NonNull Context context, @NonNull UserAgeModel userAgeModel) {
+    GreetingModel(@NonNull Context context) {
         this.context = context;
-        this.userAgeModel = userAgeModel;
     }
 
     @NonNull
-    public Greeting getGreeting() {
-        final String greetingText;
-        if (userAgeModel.isUserNewbie()) {
-            greetingText = context.getString(R.string.greeting_text_newbie);
+    public Greeting getGreetingForNewbie() {
+        String greetingText = context.getString(R.string.greeting_text_newbie);
+        Greeting out = new Greeting(greetingText);
+        return out;
+    }
 
-        } else {
-            String durationString = context.getString(R.string.duration_minutes, TimeUnit.MILLISECONDS.toMinutes(userAgeModel.getUserAgeMillis()));
-            greetingText = context.getString(R.string.greeting_text_returning, durationString);
-        }
+    @NonNull
+    public Greeting getGreetingForRegular(long userAgeMillis) {
+        String durationString = context.getString(R.string.duration_minutes, TimeUnit.MILLISECONDS.toMinutes(userAgeMillis));
+        String greetingText = context.getString(R.string.greeting_text_returning, durationString);
         Greeting out = new Greeting(greetingText);
         return out;
     }
