@@ -11,11 +11,11 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class UserAgeModel {
-    private static final int NEWBIE_AGE_THRESHOLD_MINUTES = 3;
+    static final int NEWBIE_AGE_THRESHOLD_MINUTES = 3;
     private final SharedPreferences sharedPreferences;
     private final String spkey_firstRunTime = "spkey.UserAgeModel.firstRunTime";
 
-    public UserAgeModel(@NonNull SharedPreferences sharedPreferences) {
+    UserAgeModel(@NonNull SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
         setUserAgeIfAbsent();
     }
@@ -39,8 +39,12 @@ public class UserAgeModel {
 
     private void setUserAgeIfAbsent() {
         if (!sharedPreferences.contains(spkey_firstRunTime)) {
-            sharedPreferences.edit().putLong(spkey_firstRunTime, now()).apply();
+            setFirstTimeRun(now());
         }
+    }
+
+    void setFirstTimeRun(long firstTimeRun) {
+        sharedPreferences.edit().putLong(spkey_firstRunTime, firstTimeRun).apply();
     }
 
     public boolean isUserNewbie() {
