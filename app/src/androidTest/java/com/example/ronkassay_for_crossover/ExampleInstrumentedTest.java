@@ -1,4 +1,4 @@
-package com.example.dagger2_hello_world;
+package com.example.ronkassay_for_crossover;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.dagger2_hello_world", appContext.getPackageName());
+        assertEquals("com.example.com.example.ronkassay_for_crossover", appContext.getPackageName());
     }
 }
