@@ -5,4 +5,5 @@
     <string name="greeting_text_returning">Welcome back! You\'re using the app for %1$s</string>
     <!--  1 - duration -->
     <string name="duration_minutes">%1$d minutes</string>
+    <string name="title_activity_weather_display">WeatherDisplayActivity</string>
 </resources>
