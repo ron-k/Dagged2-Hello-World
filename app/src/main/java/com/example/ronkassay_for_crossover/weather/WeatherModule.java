@@ -31,7 +31,7 @@ public class WeatherModule {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                HttpUrl newUrl = request.url().newBuilder().addQueryParameter("APPID", "84e435b5ada0a9f3a4fb6a38a11a4821").build();
+                HttpUrl newUrl = request.url().newBuilder().addQueryParameter("appid", "84e435b5ada0a9f3a4fb6a38a11a4821").build();
                 Request newRequest = request.newBuilder().url(newUrl).build();
                 return chain.proceed(newRequest);
             }

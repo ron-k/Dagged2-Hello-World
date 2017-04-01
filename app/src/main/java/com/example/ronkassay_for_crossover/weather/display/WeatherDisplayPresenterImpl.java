@@ -46,7 +46,7 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
     }
 
     private void onWeatherInfoFailedRetrieval(Throwable t) {
-        view.showError("Oops! ");
+        view.showError("Oops! " + t.toString());
     }
 
     @Inject
@@ -58,7 +58,7 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
 
     @Override
     public void onFabClicked() {
-
+        retrieveWeatherInfo();
     }
 
     @Override
