@@ -35,6 +35,7 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
 
     @Inject
     MainDatabase database;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
                 presenter.onUserLeavingActivity();
             }
         });
-        Cursor cursor = database.getReadableDatabase().query(MainDatabase.Schema.KnownLocationTable.TABLE_NAME, MainDatabase.Schema.KnownLocationTable.PROJECTION, null, null, null, null, MainDatabase.Schema.KnownLocationTable.COLUMN_NAME);
+        cursor = database.getReadableDatabase().query(MainDatabase.Schema.KnownLocationTable.TABLE_NAME, MainDatabase.Schema.KnownLocationTable.PROJECTION, null, null, null, null, MainDatabase.Schema.KnownLocationTable.COLUMN_NAME);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.location_settins_suggestion_item, cursor, new String[]{MainDatabase.Schema.KnownLocationTable.COLUMN_NAME, MainDatabase.Schema.KnownLocationTable.COLUMN_COUNTRY}, new int[]{R.id.txtCity, R.id.txtCountry}, 0);
         adapter.setFilterQueryProvider(new FilterQueryProvider() {
             @Override
@@ -117,5 +118,13 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
     @Override
     public void onBackPressed() {
         presenter.onUserLeavingActivity();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (cursor != null) {
+            cursor.close();
+        }
+        super.onDestroy();
     }
 }

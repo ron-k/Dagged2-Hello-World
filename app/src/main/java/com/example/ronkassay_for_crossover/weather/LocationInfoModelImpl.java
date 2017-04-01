@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import com.example.ronkassay_for_crossover.ApplicationScope;
 import com.example.ronkassay_for_crossover.R;
@@ -30,6 +31,7 @@ public class LocationInfoModelImpl implements LocationInfoModel {
         this(PreferenceManager.getDefaultSharedPreferences(context), context.getString(R.string.pref_locationCity_key), context.getString(R.string.pref_locationCountry_key));
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     LocationInfoModelImpl(@NonNull SharedPreferences sharedPreferences, String cityKey, String countryKey) {
         this.sharedPreferences = sharedPreferences;
         this.cityKey = cityKey;

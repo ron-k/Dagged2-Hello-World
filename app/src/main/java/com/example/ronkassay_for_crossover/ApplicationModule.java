@@ -71,7 +71,7 @@ public class ApplicationModule {
 
     @Provides
     @NonNull
-    public RuntimeExceptionDao<KnownLocation, Long> getKnownLocationDao(@NonNull MainDatabase mainDatabase) {
+    RuntimeExceptionDao<KnownLocation, Long> getKnownLocationDao(@NonNull MainDatabase mainDatabase) {
         return mainDatabase.getRuntimeExceptionDao(KnownLocation.class);
     }
 

@@ -90,7 +90,7 @@ public class WeatherDisplayPresenterImplTest {
         verifyNoMoreInteractions(model, view);
     }
 
-    private Callback<WeatherInfo> verifyRetrievalStarted() throws Exception {
+    private Callback<WeatherInfo> verifyRetrievalStarted() {
         verify(model).getLatestWeatherInfo(locationInfo);
 
         //noinspection unchecked - no any other way
