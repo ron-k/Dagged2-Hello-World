@@ -1,7 +1,9 @@
 package com.example.ronkassay_for_crossover.weather.display;
 
+import com.example.ronkassay_for_crossover.weather.City;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.TestWeatherApiCall;
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherModel;
 
@@ -9,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
+
+import java.util.Arrays;
 
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
@@ -45,7 +49,8 @@ public class WeatherDisplayPresenterImplTest {
     @Test
     public void onFabClicked() throws Exception {
         presenter.onFabClicked();
-        verifyRetrievalStarted();
+
+        verify(view).navigateToSettingsScreen();
     }
 
     @Test
@@ -59,11 +64,22 @@ public class WeatherDisplayPresenterImplTest {
         presenter.retrieveWeatherInfo();
         Callback<WeatherInfo> callback = verifyRetrievalStarted();
 
-        WeatherInfo weatherInfo = mock(WeatherInfo.class);
+        WeatherInfo weatherInfo = new WeatherInfo();
+        WeatherDatum now = mock(WeatherDatum.class);
+        WeatherDatum fc1 = mock(WeatherDatum.class);
+        WeatherDatum fc2 = mock(WeatherDatum.class);
+        weatherInfo.list = Arrays.asList(now, fc1, fc2);
+        City city = new City();
+        String expectedCity = "city1";
+        city.name = expectedCity;
+        String expectedCountry = "country2";
+        city.country = expectedCountry;
+        weatherInfo.city = city;
+
         callback.onResponse(null, Response.success(weatherInfo));
-        verify(view).displayWeatherInfo(weatherInfo.list.get(0));
-
-
+        verify(view).displayWeatherInfo(now);
+        verify(view).displayForecast(Arrays.asList(fc1, fc2));
+        verify(view).displayLocationInfo(new LocationInfo(expectedCity, expectedCountry));
         verifyNoMoreInteractions(model, view);
     }
 
