@@ -4,11 +4,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.ronkassay_for_crossover.R;
-import com.example.ronkassay_for_crossover.databinding.ActivityWeatherDisplayBinding;
+import com.example.ronkassay_for_crossover.databinding.WeatherDisplayActivityBinding;
 import com.example.ronkassay_for_crossover.weather.DaggerWeatherComponent;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherComponent;
@@ -18,13 +20,14 @@ import javax.inject.Inject;
 
 public class WeatherDisplayActivity extends AppCompatActivity implements WeatherDisplayPresenter.View {
 
+    private final ForecastAdapter forecastAdapter = new ForecastAdapter();
     @Inject
     WeatherDisplayPresenter presenter;
 
     @Inject
     LocationInfo locationInfo;
 
-    private ActivityWeatherDisplayBinding layout;
+    private WeatherDisplayActivityBinding layout;
 
 
     @Override
@@ -44,7 +47,7 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
     }
 
     private void setupLayout() {
-        layout = DataBindingUtil.setContentView(this, R.layout.activity_weather_display);
+        layout = DataBindingUtil.setContentView(this, R.layout.weather_display_activity);
         setSupportActionBar(layout.toolbar);
 
         layout.fab.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +56,10 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
                 presenter.onFabClicked();
             }
         });
+        RecyclerView forecastContainer = layout.content.forecastContainer;
+        forecastContainer.setHasFixedSize(true);
+        forecastContainer.setLayoutManager(new LinearLayoutManager(this));
+        forecastContainer.setAdapter(forecastAdapter);
     }
 
     private void setInitialContent() {
@@ -67,8 +74,8 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
 
     @Override
     public void displayWeatherInfo(@NonNull WeatherInfo weatherInfo) {
-        String text = weatherInfo.toString();
-        toast(text);
+        layout.content.setWeatherDatum(weatherInfo.list.get(0));
+        forecastAdapter.setData(weatherInfo.list);
     }
 
     private void toast(String text) {

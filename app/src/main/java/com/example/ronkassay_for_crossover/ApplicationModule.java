@@ -3,6 +3,8 @@ package com.example.ronkassay_for_crossover;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.squareup.picasso.Picasso;
+
 import javax.inject.Named;
 
 import dagger.Module;
@@ -39,6 +41,12 @@ public class ApplicationModule {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient);
+    }
+
+    @Provides
+    @NonNull
+    static Picasso getImageRetriever(@NonNull Application application) {
+        return Picasso.with(application);
     }
 
 }
