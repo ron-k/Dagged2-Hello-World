@@ -64,6 +64,7 @@
             tools:text="Friday 19:23" />
 
         <ImageView
+            android:contentDescription="@{weatherDatum.weather.get(0).description}"
             android:id="@+id/imgCurrentConditionIcon"
             android:layout_width="75dp"
             android:layout_height="75dp"

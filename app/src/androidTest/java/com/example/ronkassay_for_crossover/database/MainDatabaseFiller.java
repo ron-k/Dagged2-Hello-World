@@ -10,7 +10,6 @@ import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
 import com.google.gson.Gson;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,12 +35,7 @@ public class MainDatabaseFiller {
     public void setUp() throws Exception {
         knownLocationsDao = Application.getInstance().getApplicationComponent().knownLocationsDAO();
         testContext = InstrumentationRegistry.getContext();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-//        knownLocationsDao.deleteBuilder().delete();
-
+        knownLocationsDao.deleteBuilder().delete();
     }
 
     @Test
