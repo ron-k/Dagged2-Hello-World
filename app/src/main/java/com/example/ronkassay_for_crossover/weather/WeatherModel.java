@@ -22,7 +22,7 @@ public class WeatherModel {
     @NonNull
     private final WeatherApi weatherApi;
     @Nullable
-    private WeatherInfo lastKnownInfo = null;
+    private WeatherInfo lastKnownGoodBody = null;
 
 
     @Inject
@@ -33,8 +33,7 @@ public class WeatherModel {
     @NonNull
     public Call<WeatherInfo> getLatestWeatherInfo(@NonNull LocationInfo locationInfo) {
         final Call<WeatherInfo> apiCall = weatherApi.getWeatherByCityAndCountry(convertToQuery(locationInfo));
-        new CallWrapper(apiCall);
-        return apiCall;
+        return new CallWrapper(apiCall);
     }
 
     private String convertToQuery(LocationInfo locationInfo) {
@@ -53,16 +52,20 @@ public class WeatherModel {
             return fixResponseUsingLastKnown(apiCall.execute());
         }
 
-        @NonNull
-        private Response<WeatherInfo> fixResponseUsingLastKnown(Response<WeatherInfo> result) {
-            if (result.isSuccessful()) {
-                lastKnownInfo = result.body();
-            }
-            if (lastKnownInfo != null) {
-                return Response.success(lastKnownInfo);
+        @Nullable
+        private Response<WeatherInfo> fixResponseUsingLastKnown(@Nullable Response<WeatherInfo> currentResponse) {
+            final Response<WeatherInfo> out;
+            if (currentResponse != null && currentResponse.isSuccessful()) {
+                lastKnownGoodBody = currentResponse.body();
+                out = currentResponse;
             } else {
-                return result;
+                if (lastKnownGoodBody != null) {
+                    out = Response.success(lastKnownGoodBody);
+                } else {
+                    out = currentResponse;
+                }
             }
+            return out;
         }
 
         @Override
@@ -71,12 +74,17 @@ public class WeatherModel {
                     new Callback<WeatherInfo>() {
                         @Override
                         public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
-                            callback.onResponse(call, fixResponseUsingLastKnown(response));
+                            callback.onResponse(CallWrapper.this, fixResponseUsingLastKnown(response));
                         }
 
                         @Override
                         public void onFailure(Call<WeatherInfo> call, Throwable t) {
-                            callback.onFailure(call, t);
+                            Response<WeatherInfo> response = fixResponseUsingLastKnown(null);
+                            if (response != null) {
+                                callback.onResponse(CallWrapper.this, response);
+                            } else {
+                                callback.onFailure(CallWrapper.this, t);
+                            }
                         }
                     });
         }

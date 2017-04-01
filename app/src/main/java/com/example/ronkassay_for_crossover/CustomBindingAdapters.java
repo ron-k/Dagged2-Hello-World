@@ -17,7 +17,7 @@ import java.util.Date;
 
 public class CustomBindingAdapters {
 
-    @BindingAdapter("bind:formattedDate")
+    @BindingAdapter("formattedDate")
     public static void format(@NonNull TextView textView, @Nullable Date date) {
         String text;
         if (date == null) {
@@ -29,7 +29,7 @@ public class CustomBindingAdapters {
         textView.setText(text);
     }
 
-    @BindingAdapter("bind:imageUrl")
+    @BindingAdapter("imageUrl")
     public static void loadImage(@NonNull ImageView imageView, @Nullable String url) {
         if (url != null) {
             Picasso picasso = Application.getInstance().getApplicationComponent().imageRetriever();
