@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
-import com.example.ronkassay_for_crossover.ApplicationScope;
+import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
@@ -22,7 +22,7 @@ import javax.inject.Named;
 public class MainDatabase extends OrmLiteSqliteOpenHelper {
 
     @Inject
-    public MainDatabase(@Named(ApplicationScope.TAG) @NonNull Context context) {
+    public MainDatabase(@Named(Application.TAG) @NonNull Context context) {
         super(context, "main", null, Schema.VERSION);
     }
 
