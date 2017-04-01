@@ -154,7 +154,7 @@ public class WeatherModelTest {
         String expectedCountry = "country1";
         LocationInfo locationInfo = new LocationInfo(expectedCity, expectedCountry);
 
-        Call<WeatherInfo> callExternal = model.getLatestWeatherInfo(locationInfo);
+        Call<WeatherInfo> callExternal = model.getLatestWeatherInfo(locationInfo, true);
 
         verify(api, atLeastOnce()).getWeatherByCityAndCountry(expectedCity + "," + expectedCountry);
 

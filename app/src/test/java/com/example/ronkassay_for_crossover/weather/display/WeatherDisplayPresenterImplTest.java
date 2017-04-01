@@ -19,6 +19,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -43,7 +44,7 @@ public class WeatherDisplayPresenterImplTest {
         locationInfo = mock(LocationInfo.class);
         presenter = new WeatherDisplayPresenterImpl(view, model, locationInfo);
         testCall = mock(TestWeatherApiCall.class);
-        when(model.getLatestWeatherInfo(ArgumentMatchers.<LocationInfo>any())).thenReturn(testCall);
+        when(model.getLatestWeatherInfo(ArgumentMatchers.<LocationInfo>any(), anyBoolean())).thenReturn(testCall);
     }
 
     @Test
@@ -107,7 +108,7 @@ public class WeatherDisplayPresenterImplTest {
     }
 
     private Callback<WeatherInfo> verifyRetrievalStarted() {
-        verify(model).getLatestWeatherInfo(locationInfo);
+        verify(model).getLatestWeatherInfo(locationInfo, true);
 
         //noinspection unchecked - no any other way
         ArgumentCaptor<Callback<WeatherInfo>> argumentCaptor = ArgumentCaptor.forClass(Callback.class);

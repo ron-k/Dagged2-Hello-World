@@ -77,6 +77,6 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     void retrieveWeatherInfo() {
-        model.getLatestWeatherInfo(locationInfo).enqueue(retrievalCallback);
+        model.getLatestWeatherInfo(locationInfo, true).enqueue(retrievalCallback);
     }
 }

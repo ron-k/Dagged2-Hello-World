@@ -20,6 +20,6 @@ public interface LocationSettingsPresenter extends ActivityLifecycleAware {
 
         void navigateToWeatherDisplayScreen(boolean locationChanged);
 
-        void leaveThisScreen();
+        void leaveThisScreen(boolean haveLocation);
     }
 }
