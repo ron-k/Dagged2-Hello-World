@@ -61,7 +61,7 @@ public class WeatherDisplayPresenterImplTest {
 
         WeatherInfo weatherInfo = mock(WeatherInfo.class);
         callback.onResponse(null, Response.success(weatherInfo));
-        verify(view).displayWeatherInfo(weatherInfo);
+        verify(view).displayWeatherInfo(weatherInfo.list.get(0));
 
 
         verifyNoMoreInteractions(model, view);

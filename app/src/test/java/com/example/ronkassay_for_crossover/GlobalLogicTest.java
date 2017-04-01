@@ -1,14 +1,8 @@
 package com.example.ronkassay_for_crossover;
 
-import android.support.annotation.Nullable;
-
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
 import com.example.ronkassay_for_crossover.weather.WeatherComponent;
-import com.example.ronkassay_for_crossover.weather.WeatherModule;
-import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayComponent;
-import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayModule;
-import com.squareup.picasso.Picasso;
 
 import junit.framework.Assert;
 
@@ -76,39 +70,4 @@ public class GlobalLogicTest {
         haveLocation_haveWeatherComponent();
     }
 
-    private static class TesterApplicationComponent implements ApplicationComponent {
-        @Override
-        public void inject(Application.GlobalLogic application) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public Picasso imageRetriever() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Nullable
-        @Override
-        public WeatherComponent plus(final WeatherModule weatherModule) {
-            return new TesterWeatherComponent(weatherModule);
-        }
-
-        private static class TesterWeatherComponent implements WeatherComponent {
-            private final WeatherModule weatherModule;
-
-            TesterWeatherComponent(WeatherModule weatherModule) {
-                this.weatherModule = weatherModule;
-            }
-
-            @Override
-            public WeatherDisplayComponent plus(WeatherDisplayModule weatherDisplayModule) {
-                throw new UnsupportedOperationException();
-            }
-
-            @Override
-            public LocationInfo locationInfo() {
-                return weatherModule.getLocationInfo();
-            }
-        }
-    }
 }

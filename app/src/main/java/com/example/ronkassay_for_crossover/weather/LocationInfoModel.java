@@ -1,28 +1,17 @@
 package com.example.ronkassay_for_crossover.weather;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by ABiS on 2017-04-01.
  */
 
-public class LocationInfoModel {
+public interface LocationInfoModel {
+    void setLocationInfo(@Nullable String city, @Nullable String country);
 
-    public LocationInfoModel() {
-        setLocationInfo(new LocationInfo("Kiev", "Ukraine"));
-    }
-
-    public void setLocationInfo(LocationInfo locationInfo) {
-        this.locationInfo = locationInfo;
-    }
-
-    private LocationInfo locationInfo;
+    void setLocationInfo(@NonNull LocationInfo locationInfo);
 
     @Nullable
-    public LocationInfo getLocationInfo() {
-//        LocationInfo locationInfo = new Random().nextBoolean() ? null : new LocationInfo("Kiev", "Ukraine");
-        return locationInfo;
-    }
-
-
+    LocationInfo getLocationInfo();
 }

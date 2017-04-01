@@ -4,10 +4,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherModel;
 
 import java.io.InvalidObjectException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,7 +46,12 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
     };
 
     private void onWeatherInfoRetrieved(@NonNull WeatherInfo weatherInfo) {
-        view.displayWeatherInfo(weatherInfo);
+        view.displayWeatherInfo(weatherInfo.list.get(0));
+        List<WeatherDatum> forecastData = weatherInfo.list.size() <= 1 ?
+                Collections.<WeatherDatum>emptyList() :
+                weatherInfo.list.subList(1, weatherInfo.list.size());
+        view.displayForecast(forecastData);
+        view.displayLocationInfo(new LocationInfo(weatherInfo.city.name, weatherInfo.city.country));
     }
 
     private void onWeatherInfoFailedRetrieval(Throwable t) {
@@ -59,7 +67,7 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
 
     @Override
     public void onFabClicked() {
-        retrieveWeatherInfo();
+        view.navigateToSettingsScreen();
     }
 
     @Override

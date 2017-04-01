@@ -3,10 +3,15 @@ package com.example.ronkassay_for_crossover;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.ronkassay_for_crossover.database.MainDatabase;
 import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
+import com.example.ronkassay_for_crossover.weather.LocationInfoModelImpl;
+import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
+@Singleton
 public class ApplicationModule {
     private final Application application;
 
@@ -57,8 +63,16 @@ public class ApplicationModule {
 
     @Provides
     @NonNull
-    LocationInfoModel getLocationInfoModel() {
-        return new LocationInfoModel();
+    @Singleton
+    LocationInfoModel getLocationInfoModel(LocationInfoModelImpl impl) {
+        return impl;
+    }
+
+
+    @Provides
+    @NonNull
+    public RuntimeExceptionDao<KnownLocation, Long> getKnownLocationDao(@NonNull MainDatabase mainDatabase) {
+        return mainDatabase.getRuntimeExceptionDao(KnownLocation.class);
     }
 
 }

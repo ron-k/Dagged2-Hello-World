@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.ronkassay_for_crossover.weather.LocationInfo" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.ronkassay_for_crossover.weather.location.LocationSettingsActivity"
+        tools:showIn="@layout/location_settings_activity">
+
+        <AutoCompleteTextView
+            android:id="@+id/txtCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:dropDownHeight="match_parent"
+            android:hint="@string/location_settings.label.inputHint"
+            android:maxLines="1"
+            android:inputType="text|textAutoComplete"
+            android:imeOptions="actionDone"
+            android:text="@{data == null ? null : data.city + ` ` + data.country}"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Paris" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
