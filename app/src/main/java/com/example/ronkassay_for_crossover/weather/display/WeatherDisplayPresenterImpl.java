@@ -1,6 +1,7 @@
 package com.example.ronkassay_for_crossover.weather.display;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
@@ -66,7 +67,8 @@ class WeatherDisplayPresenterImpl implements WeatherDisplayPresenter {
         retrieveWeatherInfo();
     }
 
-    private void retrieveWeatherInfo() {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    void retrieveWeatherInfo() {
         model.getLatestWeatherInfo(locationInfo).enqueue(retrievalCallback);
     }
 }
