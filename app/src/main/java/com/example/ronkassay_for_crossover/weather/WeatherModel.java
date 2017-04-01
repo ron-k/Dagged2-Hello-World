@@ -1,11 +1,13 @@
 package com.example.ronkassay_for_crossover.weather;
 
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.ronkassay_for_crossover.weather.fetch.WeatherApi;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -22,8 +24,10 @@ public class WeatherModel {
     @NonNull
     private final WeatherApi weatherApi;
     @Nullable
-    private WeatherInfo lastKnownGoodBody = null;
+    private WeatherInfo lastKnownWeatherInfo = null;
+    private long cacheWriteTime = 0;
 
+    private final long cachingPeriodMillis = TimeUnit.MINUTES.toMillis(1);
 
     @Inject
     WeatherModel(@NonNull WeatherApi weatherApi) {
@@ -31,24 +35,32 @@ public class WeatherModel {
     }
 
     @NonNull
-    public Call<WeatherInfo> getLatestWeatherInfo(@NonNull LocationInfo locationInfo) {
+    public Call<WeatherInfo> getLatestWeatherInfo(@NonNull LocationInfo locationInfo, boolean useCache) {
         final Call<WeatherInfo> apiCall = weatherApi.getWeatherByCityAndCountry(convertToQuery(locationInfo));
-        return new CallWrapper(apiCall);
+        return new CallWrapper(apiCall, useCache);
     }
 
     private String convertToQuery(LocationInfo locationInfo) {
         return locationInfo.getCity() + "," + locationInfo.getCountry();
     }
 
+
     private class CallWrapper implements Call<WeatherInfo> {
         private final Call<WeatherInfo> apiCall;
+        private final boolean useCache;
 
-        CallWrapper(Call<WeatherInfo> apiCall) {
+        CallWrapper(Call<WeatherInfo> apiCall, boolean useCache) {
             this.apiCall = apiCall;
+            this.useCache = useCache;
         }
 
         @Override
         public Response<WeatherInfo> execute() throws IOException {
+            if (useCache) {
+                if (isCacheValid() && lastKnownWeatherInfo != null) {
+                    return Response.success(lastKnownWeatherInfo);
+                }
+            }
             return fixResponseUsingLastKnown(apiCall.execute());
         }
 
@@ -56,11 +68,12 @@ public class WeatherModel {
         private Response<WeatherInfo> fixResponseUsingLastKnown(@Nullable Response<WeatherInfo> currentResponse) {
             final Response<WeatherInfo> out;
             if (currentResponse != null && currentResponse.isSuccessful()) {
-                lastKnownGoodBody = currentResponse.body();
+                lastKnownWeatherInfo = currentResponse.body();
+                cacheWriteTime = now();
                 out = currentResponse;
             } else {
-                if (lastKnownGoodBody != null) {
-                    out = Response.success(lastKnownGoodBody);
+                if (lastKnownWeatherInfo != null) {
+                    out = Response.success(lastKnownWeatherInfo);
                 } else {
                     out = currentResponse;
                 }
@@ -70,6 +83,11 @@ public class WeatherModel {
 
         @Override
         public void enqueue(final Callback<WeatherInfo> callback) {
+            if (useCache) {
+                if (isCacheValid() && lastKnownWeatherInfo != null) {
+                    callback.onResponse(CallWrapper.this, Response.success(lastKnownWeatherInfo));
+                }
+            }
             apiCall.enqueue(
                     new Callback<WeatherInfo>() {
                         @Override
@@ -107,12 +125,21 @@ public class WeatherModel {
         @SuppressWarnings("CloneDoesntCallSuperClone")
         @Override
         public Call<WeatherInfo> clone() {
-            return new CallWrapper(apiCall.clone());
+            return new CallWrapper(apiCall.clone(), useCache);
         }
 
         @Override
         public Request request() {
             return apiCall.request();
         }
+    }
+
+    private boolean isCacheValid() {
+        long now = now();
+        return now - cacheWriteTime < cachingPeriodMillis && now > cacheWriteTime;
+    }
+
+    protected long now() {
+        return SystemClock.uptimeMillis();
     }
 }

@@ -41,7 +41,7 @@ class LocationSettingsPresenterImpl implements LocationSettingsPresenter {
             boolean locationChanged = !currentLocation.equals(initialLocation);
             view.navigateToWeatherDisplayScreen(locationChanged);
         }
-        view.leaveThisScreen();
+        view.leaveThisScreen(currentLocation != null);
     }
 
 }

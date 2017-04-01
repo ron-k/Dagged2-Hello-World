@@ -1,5 +1,7 @@
 package com.example.ronkassay_for_crossover.weather.location;
 
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.example.ronkassay_for_crossover.database.MainDatabase;
 import com.example.ronkassay_for_crossover.databinding.LocationSettingsActivityBinding;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayActivity;
+import com.example.ronkassay_for_crossover.widget.WeatherUpdateService;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import javax.inject.Inject;
@@ -36,12 +39,22 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
     @Inject
     MainDatabase database;
     private Cursor cursor;
+    private int appWidgetId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Application.getInstance().getApplicationComponent().plus(new LocationSettingsModule(this)).inject(this);
         super.onCreate(savedInstanceState);
         setupLayout();
+        Intent intent = getIntent();
+        if (AppWidgetManager.ACTION_APPWIDGET_CONFIGURE.equals(intent.getAction())) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                appWidgetId = extras.getInt(
+                        AppWidgetManager.EXTRA_APPWIDGET_ID,
+                        AppWidgetManager.INVALID_APPWIDGET_ID);
+            }
+        }
     }
 
     private void setupLayout() {
@@ -111,7 +124,14 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
     }
 
     @Override
-    public void leaveThisScreen() {
+    public void leaveThisScreen(boolean haveLocation) {
+        if (appWidgetId != 0 && haveLocation) {
+            WeatherUpdateService.startWidgetUpdate(this, appWidgetId);
+
+            Intent resultValue = new Intent();
+            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            setResult(RESULT_OK, resultValue);
+        }
         finish();
     }
 

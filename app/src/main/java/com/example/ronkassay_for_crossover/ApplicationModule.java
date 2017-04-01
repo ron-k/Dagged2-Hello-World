@@ -1,6 +1,8 @@
 package com.example.ronkassay_for_crossover;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import com.example.ronkassay_for_crossover.database.MainDatabase;
@@ -75,4 +77,10 @@ public class ApplicationModule {
         return mainDatabase.getRuntimeExceptionDao(KnownLocation.class);
     }
 
+
+    @Provides
+    @NonNull
+    Handler getHandler() {
+        return new Handler(Looper.getMainLooper());
+    }
 }
