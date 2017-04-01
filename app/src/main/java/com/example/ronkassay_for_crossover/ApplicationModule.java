@@ -38,7 +38,7 @@ public class ApplicationModule {
 
     @Provides
     @NonNull
-    @Named(ApplicationScope.TAG)
+    @Named(Application.TAG)
     Context context() {
         return application;
     }

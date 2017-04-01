@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
-import com.example.ronkassay_for_crossover.ApplicationScope;
+import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.common.Strings;
 
@@ -27,7 +27,7 @@ public class LocationInfoModelImpl implements LocationInfoModel {
     private LocationInfo locationInfo;
 
     @Inject
-    LocationInfoModelImpl(@Named(ApplicationScope.TAG) @NonNull Context context) {
+    LocationInfoModelImpl(@Named(Application.TAG) @NonNull Context context) {
         this(PreferenceManager.getDefaultSharedPreferences(context), context.getString(R.string.pref_locationCity_key), context.getString(R.string.pref_locationCountry_key));
     }
 

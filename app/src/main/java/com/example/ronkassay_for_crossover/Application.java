@@ -18,6 +18,7 @@ import dagger.internal.Preconditions;
  */
 
 public class Application extends android.app.Application {
+    public static final String TAG = "Application";
     private static Application INSTANCE;
 
     private ApplicationComponent applicationComponent;
