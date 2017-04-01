@@ -56,12 +56,11 @@ public class WeatherModel {
 
         @Override
         public Response<WeatherInfo> execute() throws IOException {
-            if (useCache) {
-                if (isCacheValid() && lastKnownWeatherInfo != null) {
-                    return Response.success(lastKnownWeatherInfo);
-                }
+            if (useCache && isCacheValid() && lastKnownWeatherInfo != null) {
+                return Response.success(lastKnownWeatherInfo);
+            } else {
+                return fixResponseUsingLastKnown(apiCall.execute());
             }
-            return fixResponseUsingLastKnown(apiCall.execute());
         }
 
         @Nullable
@@ -83,28 +82,27 @@ public class WeatherModel {
 
         @Override
         public void enqueue(final Callback<WeatherInfo> callback) {
-            if (useCache) {
-                if (isCacheValid() && lastKnownWeatherInfo != null) {
+            if (useCache && isCacheValid() && lastKnownWeatherInfo != null) {
                     callback.onResponse(CallWrapper.this, Response.success(lastKnownWeatherInfo));
-                }
-            }
-            apiCall.enqueue(
-                    new Callback<WeatherInfo>() {
-                        @Override
-                        public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
-                            callback.onResponse(CallWrapper.this, fixResponseUsingLastKnown(response));
-                        }
-
-                        @Override
-                        public void onFailure(Call<WeatherInfo> call, Throwable t) {
-                            Response<WeatherInfo> response = fixResponseUsingLastKnown(null);
-                            if (response != null) {
-                                callback.onResponse(CallWrapper.this, response);
-                            } else {
-                                callback.onFailure(CallWrapper.this, t);
+            } else {
+                apiCall.enqueue(
+                        new Callback<WeatherInfo>() {
+                            @Override
+                            public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
+                                callback.onResponse(CallWrapper.this, fixResponseUsingLastKnown(response));
                             }
-                        }
-                    });
+
+                            @Override
+                            public void onFailure(Call<WeatherInfo> call, Throwable t) {
+                                Response<WeatherInfo> response = fixResponseUsingLastKnown(null);
+                                if (response != null) {
+                                    callback.onResponse(CallWrapper.this, response);
+                                } else {
+                                    callback.onFailure(CallWrapper.this, t);
+                                }
+                            }
+                        });
+            }
         }
 
         @Override
