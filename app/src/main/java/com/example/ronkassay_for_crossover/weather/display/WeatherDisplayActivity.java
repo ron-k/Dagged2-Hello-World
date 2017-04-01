@@ -1,5 +1,7 @@
 package com.example.ronkassay_for_crossover.weather.display;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,12 +16,16 @@ import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.databinding.WeatherDisplayActivityBinding;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherComponent;
-import com.example.ronkassay_for_crossover.weather.WeatherInfo;
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
+import com.example.ronkassay_for_crossover.weather.location.LocationSettingsActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 public class WeatherDisplayActivity extends AppCompatActivity implements WeatherDisplayPresenter.View {
 
+    private static final String EXTRA_LOCATION_CHANGED = "EXTRA_LOCATION_CHANGED";
     private final ForecastAdapter forecastAdapter = new ForecastAdapter();
     @Inject
     WeatherDisplayPresenter presenter;
@@ -35,15 +41,30 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
         super.onCreate(savedInstanceState);
         WeatherComponent weatherComponent = Application.getInstance().getWeatherComponent();
         if (weatherComponent == null) {
-            //start get location activity
+            navigateToSettingsScreen();
             finish();
         } else {
             weatherComponent.plus(new WeatherDisplayModule(this)).inject(this);
 
             setupLayout();
 
-            setInitialContent();
+            displayLocationInfo(locationInfo);
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.getBooleanExtra(EXTRA_LOCATION_CHANGED, false)) {
+            recreate();
+        }
+    }
+
+
+    public static void launchIt(@NonNull Activity activity, boolean isLocationChanged) {
+        Intent intent = new Intent(activity, WeatherDisplayActivity.class);
+        intent.putExtra(EXTRA_LOCATION_CHANGED, isLocationChanged);
+        activity.startActivity(intent);
     }
 
     private void setupLayout() {
@@ -60,9 +81,18 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
         forecastContainer.setHasFixedSize(true);
         forecastContainer.setLayoutManager(new LinearLayoutManager(this));
         forecastContainer.setAdapter(forecastAdapter);
+        View.OnClickListener navigateToSettingsOnClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToSettingsScreen();
+            }
+        };
+        layout.content.txtCity.setOnClickListener(navigateToSettingsOnClick);
+        layout.content.txtCountry.setOnClickListener(navigateToSettingsOnClick);
     }
 
-    private void setInitialContent() {
+    @Override
+    public void displayLocationInfo(@NonNull LocationInfo locationInfo) {
         layout.content.setLocationInfo(locationInfo);
     }
 
@@ -73,10 +103,20 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
     }
 
     @Override
-    public void displayWeatherInfo(@NonNull WeatherInfo weatherInfo) {
-        layout.content.setWeatherDatum(weatherInfo.list.get(0));
-        forecastAdapter.setData(weatherInfo.list);
+    public void displayWeatherInfo(WeatherDatum currentWeather) {
+        layout.content.setWeatherDatum(currentWeather);
     }
+
+    @Override
+    public void displayForecast(List<WeatherDatum> forecastData) {
+        forecastAdapter.setData(forecastData);
+    }
+
+    @Override
+    public void navigateToSettingsScreen() {
+        startActivity(new Intent(this, LocationSettingsActivity.class));
+    }
+
 
     private void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();

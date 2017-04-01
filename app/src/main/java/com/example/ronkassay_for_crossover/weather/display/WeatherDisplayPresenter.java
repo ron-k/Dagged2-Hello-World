@@ -2,21 +2,28 @@ package com.example.ronkassay_for_crossover.weather.display;
 
 import android.support.annotation.NonNull;
 
-import com.example.ronkassay_for_crossover.weather.WeatherInfo;
+import com.example.ronkassay_for_crossover.common.ActivityLifecycleAware;
+import com.example.ronkassay_for_crossover.common.CanDisplayErrors;
+import com.example.ronkassay_for_crossover.weather.LocationInfo;
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
+
+import java.util.List;
 
 /**
  * Created by ABiS on 2017-03-31.
  */
 
-interface WeatherDisplayPresenter {
+interface WeatherDisplayPresenter extends ActivityLifecycleAware {
     void onFabClicked();
 
-    void onActivityStarted();
+    interface View extends CanDisplayErrors {
 
-    interface View {
+        void displayLocationInfo(@NonNull LocationInfo locationInfo);
 
-        void displayWeatherInfo(@NonNull WeatherInfo weatherInfo);
+        void displayWeatherInfo(WeatherDatum currentWeather);
 
-        void showError(String message);
+        void displayForecast(List<WeatherDatum> forecastData);
+
+        void navigateToSettingsScreen();
     }
 }

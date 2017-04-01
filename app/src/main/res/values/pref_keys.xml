@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_locationCity_key">pref_locationCity_key</string>
+    <string name="pref_locationCountry_key">pref_locationCountry_key</string>
+</resources>

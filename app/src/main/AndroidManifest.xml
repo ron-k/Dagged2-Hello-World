@@ -15,6 +15,7 @@
         <activity
             android:name=".weather.display.WeatherDisplayActivity"
             android:label="@string/title_activity_weather_display"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".weather.location.LocationSettingsActivity"
+            android:label="@string/title_activity_location_settings"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
