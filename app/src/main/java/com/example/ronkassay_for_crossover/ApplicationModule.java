@@ -3,6 +3,7 @@ package com.example.ronkassay_for_crossover;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Named;
@@ -15,23 +16,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class ApplicationModule {
+    private final Application application;
+
+    public ApplicationModule(Application application) {
+        this.application = application;
+    }
 
     @Provides
     @NonNull
-    static Application application() {
-        return Application.getInstance();
+    Application application() {
+        return application;
     }
 
     @Provides
     @NonNull
     @Named(ApplicationScope.TAG)
-    static Context context() {
-        return Application.getInstance();
+    Context context() {
+        return application;
     }
 
     @Provides
     @NonNull
-    static OkHttpClient getHttpClient() {
+    OkHttpClient getHttpClient() {
         return new OkHttpClient();
     }
 
@@ -45,8 +51,14 @@ public class ApplicationModule {
 
     @Provides
     @NonNull
-    static Picasso getImageRetriever(@NonNull Application application) {
+    Picasso getImageRetriever() {
         return Picasso.with(application);
+    }
+
+    @Provides
+    @NonNull
+    LocationInfoModel getLocationInfoModel() {
+        return new LocationInfoModel();
     }
 
 }

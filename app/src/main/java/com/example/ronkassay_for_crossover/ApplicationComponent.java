@@ -1,8 +1,9 @@
 package com.example.ronkassay_for_crossover;
 
-import android.app.Application;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
+import com.example.ronkassay_for_crossover.weather.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.WeatherModule;
 import com.squareup.picasso.Picasso;
 
 import dagger.Component;
@@ -10,8 +11,10 @@ import dagger.Component;
 @ApplicationScope
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-    void inject(Application application);
+    void inject(Application.GlobalLogic application);
 
-    @NonNull
     Picasso imageRetriever();
+
+    @Nullable
+    WeatherComponent plus(WeatherModule weatherModule);
 }
