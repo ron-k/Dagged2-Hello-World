@@ -32,7 +32,12 @@ public class WeatherModelTest {
     @Before
     public void setUp() throws Exception {
         api = mock(WeatherApi.class);
-        model = new WeatherModel(api);
+        model = new WeatherModel(api) {
+            @Override
+            protected long now() {
+                return System.currentTimeMillis();
+            }
+        };
         callInternal = mock(TestWeatherApiCall.class);
         when(api.getWeatherByCityAndCountry(anyString())).thenReturn(callInternal);
     }
@@ -154,7 +159,7 @@ public class WeatherModelTest {
         String expectedCountry = "country1";
         LocationInfo locationInfo = new LocationInfo(expectedCity, expectedCountry);
 
-        Call<WeatherInfo> callExternal = model.getLatestWeatherInfo(locationInfo, true);
+        Call<WeatherInfo> callExternal = model.getLatestWeatherInfo(locationInfo, false);
 
         verify(api, atLeastOnce()).getWeatherByCityAndCountry(expectedCity + "," + expectedCountry);
 
