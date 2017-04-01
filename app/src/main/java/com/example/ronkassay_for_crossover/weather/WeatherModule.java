@@ -1,6 +1,7 @@
 package com.example.ronkassay_for_crossover.weather;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.example.ronkassay_for_crossover.weather.fetch.WeatherApi;
 
@@ -23,10 +24,15 @@ import retrofit2.Retrofit;
 @Singleton
 @Module
 public class WeatherModule {
+    private final LocationInfo locationInfo;
+
+    public WeatherModule(@NonNull LocationInfo locationInfo) {
+        this.locationInfo = locationInfo;
+    }
 
     @Provides
     @NonNull
-    WeatherApi getWeatherApi(@NonNull OkHttpClient appHttpClient, @NonNull Retrofit.Builder baseBuilder) {
+    static WeatherApi getWeatherApi(@NonNull OkHttpClient appHttpClient, @NonNull Retrofit.Builder baseBuilder) {
         OkHttpClient httpClientWithAuthorization = appHttpClient.newBuilder().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -45,14 +51,9 @@ public class WeatherModule {
         return service;
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
     @Provides
-    @NonNull
-    LocationInfoModel getLocationInfoModel() {
-        return new LocationInfoModel();
-    }
-
-    @Provides
-    LocationInfo getLocationInfo(@NonNull LocationInfoModel locationInfoModel) {
-        return locationInfoModel.getLocationInfo();
+    public LocationInfo getLocationInfo() {
+        return locationInfo;
     }
 }

@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.databinding.WeatherDisplayActivityBinding;
-import com.example.ronkassay_for_crossover.weather.DaggerWeatherComponent;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherComponent;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
@@ -33,7 +33,7 @@ public class WeatherDisplayActivity extends AppCompatActivity implements Weather
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WeatherComponent weatherComponent = DaggerWeatherComponent.create();
+        WeatherComponent weatherComponent = Application.getInstance().getWeatherComponent();
         if (weatherComponent == null) {
             //start get location activity
             finish();
