@@ -7,7 +7,7 @@ import com.example.ronkassay_for_crossover.widget.WeatherUpdateService;
 import dagger.Subcomponent;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 @Subcomponent(modules = {WeatherModule.class})
 public interface WeatherComponent {

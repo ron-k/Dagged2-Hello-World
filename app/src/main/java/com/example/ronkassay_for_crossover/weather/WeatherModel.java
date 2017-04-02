@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 
 public class WeatherModel {

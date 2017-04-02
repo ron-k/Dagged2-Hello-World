@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 /**
- * Created by ABiS on 2017-04-02.
+ * Created by Ron Kassay on 2017-04-02.
  */
 
 class WeatherAnalyzerImpl implements WeatherAnalyzer {

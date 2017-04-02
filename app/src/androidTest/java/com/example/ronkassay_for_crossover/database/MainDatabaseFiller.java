@@ -23,7 +23,7 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 @RunWith(AndroidJUnit4.class)
 public class MainDatabaseFiller {

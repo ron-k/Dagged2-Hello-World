@@ -10,7 +10,7 @@ import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import java.util.List;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 
 interface WeatherDisplayPresenter extends ActivityLifecycleAware {

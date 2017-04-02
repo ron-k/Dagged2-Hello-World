@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 // http://openweathermap.org/forecast5
 public interface WeatherApi {

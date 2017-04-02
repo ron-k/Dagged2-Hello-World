@@ -5,7 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 
 @DatabaseTable(tableName = MainDatabase.Schema.KnownLocationTable.TABLE_NAME)

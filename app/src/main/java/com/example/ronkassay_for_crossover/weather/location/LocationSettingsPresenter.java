@@ -7,7 +7,7 @@ import com.example.ronkassay_for_crossover.common.CanDisplayErrors;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 
 public interface LocationSettingsPresenter extends ActivityLifecycleAware {

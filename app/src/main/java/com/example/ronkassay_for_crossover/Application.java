@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import dagger.internal.Preconditions;
 
 /**
- * Created by ABiS on 2017-03-03.
+ * Created by Ron Kassay on 2017-03-03.
  */
 
 public class Application extends android.app.Application {

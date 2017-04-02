@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 public class WeatherDisplayPresenterImplTest {
 

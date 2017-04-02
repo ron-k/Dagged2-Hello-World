@@ -9,7 +9,7 @@ import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
 import javax.inject.Inject;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 
 class LocationSettingsPresenterImpl implements LocationSettingsPresenter {
