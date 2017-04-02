@@ -3,7 +3,7 @@ package com.example.ronkassay_for_crossover.weather;
 import android.support.annotation.NonNull;
 
 /**
- * Created by ABiS on 2017-04-02.
+ * Created by Ron Kassay on 2017-04-02.
  */
 
 interface WeatherAnalyzer {

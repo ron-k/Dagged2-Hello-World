@@ -12,7 +12,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 
 public class CustomBindingAdapters {

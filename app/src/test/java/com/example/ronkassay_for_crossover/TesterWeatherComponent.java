@@ -9,7 +9,7 @@ import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayModule;
 import com.example.ronkassay_for_crossover.widget.WeatherUpdateService;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 class TesterWeatherComponent implements WeatherComponent {
     private final WeatherModule weatherModule;

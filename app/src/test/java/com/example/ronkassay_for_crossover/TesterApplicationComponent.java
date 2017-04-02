@@ -11,7 +11,7 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by ABiS on 2017-04-01.
+ * Created by Ron Kassay on 2017-04-01.
  */
 class TesterApplicationComponent implements ApplicationComponent {
     @Override

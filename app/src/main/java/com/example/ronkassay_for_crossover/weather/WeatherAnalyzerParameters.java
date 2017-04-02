@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Created by ABiS on 2017-04-02.
+ * Created by Ron Kassay on 2017-04-02.
  */
 
 class WeatherAnalyzerParameters {

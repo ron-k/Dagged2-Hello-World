@@ -19,7 +19,7 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 @Singleton
 @Module

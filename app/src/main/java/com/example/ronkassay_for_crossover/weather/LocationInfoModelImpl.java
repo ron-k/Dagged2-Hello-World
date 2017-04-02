@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Created by ABiS on 2017-03-31.
+ * Created by Ron Kassay on 2017-03-31.
  */
 
 public class LocationInfoModelImpl implements LocationInfoModel {
