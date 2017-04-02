@@ -32,7 +32,8 @@ public class WeatherModelTest {
     @Before
     public void setUp() throws Exception {
         api = mock(WeatherApi.class);
-        model = new WeatherModel(api) {
+        WeatherAnalyzer analyzer = mock(WeatherAnalyzer.class);
+        model = new WeatherModel(api, analyzer, Long.MAX_VALUE) {
             @Override
             protected long now() {
                 return System.currentTimeMillis();

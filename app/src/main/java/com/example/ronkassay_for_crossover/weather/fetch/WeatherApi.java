@@ -9,15 +9,15 @@ import retrofit2.http.Query;
 /**
  * Created by ABiS on 2017-03-31.
  */
-// http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=b1b15e88fa797225412429c1c50c122a1
+// http://openweathermap.org/forecast5
 public interface WeatherApi {
 
-    // http://api.openweathermap.org/data/2.5/forecast?id=2172797
+    // http://api.openweathermap.org/data/2.5/forecast?id=2172797&units=metric
     @GET("forecast?units=metric")
     Call<WeatherInfo> getWeatherByCityId(@Query("id") String cityId);
 
 
-    // http://api.openweathermap.org/data/2.5/forecast?q=London,uk
+    // http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric
     @GET("forecast?units=metric")
     Call<WeatherInfo> getWeatherByCityAndCountry(@Query("q") String query);
 

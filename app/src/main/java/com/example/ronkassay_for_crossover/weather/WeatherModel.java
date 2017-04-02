@@ -1,15 +1,20 @@
 package com.example.ronkassay_for_crossover.weather;
 
+import android.content.Context;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
+import com.example.ronkassay_for_crossover.Application;
+import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.weather.fetch.WeatherApi;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import okhttp3.Request;
 import retrofit2.Call;
@@ -23,15 +28,24 @@ import retrofit2.Response;
 public class WeatherModel {
     @NonNull
     private final WeatherApi weatherApi;
+    @NonNull
+    private final WeatherAnalyzer weatherAnalyzer;
     @Nullable
     private WeatherInfo lastKnownWeatherInfo = null;
     private long cacheWriteTime = 0;
 
-    private final long cachingPeriodMillis = TimeUnit.MINUTES.toMillis(1);
+    private final long cachingPeriodMillis;
 
     @Inject
-    WeatherModel(@NonNull WeatherApi weatherApi) {
+    WeatherModel(@NonNull WeatherApi weatherApi, @NonNull WeatherAnalyzer weatherAnalyzer, @Named(Application.TAG) Context context) {
+        this(weatherApi, weatherAnalyzer, TimeUnit.MINUTES.toMillis(context.getResources().getInteger(R.integer.weather_model_caching_period_minutes)));
+    }
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    WeatherModel(@NonNull WeatherApi weatherApi, @NonNull WeatherAnalyzer weatherAnalyzer, long cachingPeriodMillis) {
         this.weatherApi = weatherApi;
+        this.weatherAnalyzer = weatherAnalyzer;
+        this.cachingPeriodMillis = cachingPeriodMillis;
     }
 
     @NonNull
@@ -42,6 +56,13 @@ public class WeatherModel {
 
     private String convertToQuery(LocationInfo locationInfo) {
         return locationInfo.getCity() + "," + locationInfo.getCountry();
+    }
+
+    private void setLastKnownWeatherInfo(@Nullable WeatherInfo newWeatherInfo) {
+        if (newWeatherInfo != null && !newWeatherInfo.equals(lastKnownWeatherInfo)) {
+            weatherAnalyzer.onWeatherUpdated(newWeatherInfo);
+        }
+        lastKnownWeatherInfo = newWeatherInfo;
     }
 
 
@@ -67,7 +88,7 @@ public class WeatherModel {
         private Response<WeatherInfo> fixResponseUsingLastKnown(@Nullable Response<WeatherInfo> currentResponse) {
             final Response<WeatherInfo> out;
             if (currentResponse != null && currentResponse.isSuccessful()) {
-                lastKnownWeatherInfo = currentResponse.body();
+                setLastKnownWeatherInfo(currentResponse.body());
                 cacheWriteTime = now();
                 out = currentResponse;
             } else {

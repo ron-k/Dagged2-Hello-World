@@ -72,7 +72,7 @@ public class LocationSettingsActivity extends AppCompatActivity implements Locat
             @Override
             public Cursor runQuery(CharSequence constraint) {
                 String selection = MainDatabase.Schema.KnownLocationTable.COLUMN_NAME + " LIKE ?";
-                String[] selectionArgs = {"%" + constraint + "%"};
+                String[] selectionArgs = {"" + constraint + "%"};
                 Cursor q = database.getReadableDatabase().query(MainDatabase.Schema.KnownLocationTable.TABLE_NAME,
                         MainDatabase.Schema.KnownLocationTable.PROJECTION, selection, selectionArgs,
                         null, null, MainDatabase.Schema.KnownLocationTable.COLUMN_NAME);

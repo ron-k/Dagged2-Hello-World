@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Dagger2-Hello-World!</string>
+    <string name="app_name">AA Weather by Ron Kassay</string>
 
-    <string name="title_activity_weather_display">WeatherDisplayActivity</string>
     <string name="weather_display.label.temp_range">High/Low:</string>
     <string name="weather_display_label_humidity">Humidity:</string>
     <string name="weather_display.label.wind">Wind:</string>
@@ -9,6 +8,9 @@
     <string name="weather_display.text.temp_range">%1$s°C-%2$s°C</string>
     <string name="weather_display.text.temp">%.0f°C</string>
     <string name="weather_display.text.humidity">%s%%</string>
-    <string name="title_activity_location_settings">LocationSettingsActivity</string>
+    <string name="location_settings.screen_title">Settings</string>
     <string name="location_settings.label.inputHint">Enter City</string>
+
+    <string name="weather_analyzer.extreme.title">Extreme weather warning</string>
+    <string name="weather_analyzer.extreme.content_text">At %1$s there will be %2$s!</string>
 </resources>

@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public class WeatherInfo {
 
     public City city;
-    public java.util.List<WeatherDatum> list = new ArrayList<WeatherDatum>();
+    public java.util.List<WeatherDatum> list = new ArrayList<>();
 }
