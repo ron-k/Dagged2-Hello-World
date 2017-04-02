@@ -8,7 +8,6 @@ public class MainInfo {
     public Float tempMin;
     public Float tempMax;
 
-    public Float grndLevel;
     public Integer humidity;
 
 

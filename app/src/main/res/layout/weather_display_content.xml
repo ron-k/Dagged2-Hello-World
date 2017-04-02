@@ -58,7 +58,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            app:formattedDate="@{weatherDatum.dtTxt()}"
+            app:formattedDate="@{weatherDatum.date}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCity"
             tools:text="Friday 19:23" />

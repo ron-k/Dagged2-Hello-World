@@ -26,7 +26,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:dropDownHeight="match_parent"
+            android:dropDownHeight="200dp"
             android:hint="@string/location_settings.label.inputHint"
             android:maxLines="1"
             android:inputType="text|textAutoComplete"

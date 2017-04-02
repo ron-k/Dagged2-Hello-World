@@ -1,5 +1,6 @@
 package com.example.ronkassay_for_crossover;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -20,6 +21,8 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 @Module
 @Singleton
@@ -82,5 +85,11 @@ public class ApplicationModule {
     @NonNull
     Handler getHandler() {
         return new Handler(Looper.getMainLooper());
+    }
+
+    @Provides
+    @NonNull
+    NotificationManager getNotificationManager() {
+        return (NotificationManager) application.getSystemService(NOTIFICATION_SERVICE);
     }
 }

@@ -31,7 +31,6 @@ public class WeatherModule {
     }
 
     @Provides
-    @NonNull
     static WeatherApi getWeatherApi(@NonNull OkHttpClient appHttpClient, @NonNull Retrofit.Builder baseBuilder) {
         OkHttpClient httpClientWithAuthorization = appHttpClient.newBuilder().addInterceptor(new Interceptor() {
             @Override
@@ -55,5 +54,16 @@ public class WeatherModule {
     @Provides
     public LocationInfo getLocationInfo() {
         return locationInfo;
+    }
+
+    @Provides
+    WeatherAnalyzer weatherAnalyzerPresentor(@NonNull WeatherAnalyzerImpl impl) {
+        return impl;
+    }
+
+
+    @Provides
+    WeatherAnalyzer.View displayUsingNotification(@NonNull WeatherAnalyzerNotification weatherAnalyzerNotification) {
+        return weatherAnalyzerNotification;
     }
 }

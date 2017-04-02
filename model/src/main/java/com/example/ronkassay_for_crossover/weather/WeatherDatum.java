@@ -8,11 +8,10 @@ public class WeatherDatum {
 
     public Long dt;
     public MainInfo main;
-    public java.util.List<WeatherDescriptor> weather = new ArrayList<WeatherDescriptor>();
-    public Cloudiness clouds;
+    public java.util.List<WeatherDescriptor> weather = new ArrayList<>();
     public Wind wind;
 
-    public Date dtTxt() {
+    public Date getDate() {
         return dt == null ? null : new Date(dt * 1000);
     }
 }

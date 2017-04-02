@@ -19,14 +19,20 @@ public class CustomBindingAdapters {
 
     @BindingAdapter("formattedDate")
     public static void format(@NonNull TextView textView, @Nullable Date date) {
+        String text = formatDate(date);
+        textView.setText(text);
+    }
+
+    @NonNull
+    public static String formatDate(@Nullable Date date) {
         String text;
         if (date == null) {
             text = "";
         } else {
-            java.text.DateFormat dateTimeInstance = java.text.DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT);
+            DateFormat dateTimeInstance = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT);
             text = dateTimeInstance.format(date);
         }
-        textView.setText(text);
+        return text;
     }
 
     @BindingAdapter("imageUrl")
