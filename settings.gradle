@@ -1,1 +1,2 @@
 include ':app', ':model'
+rootProject.name = "AA-Weather"

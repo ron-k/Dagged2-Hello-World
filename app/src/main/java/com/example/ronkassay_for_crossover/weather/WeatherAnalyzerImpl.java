@@ -12,12 +12,10 @@ class WeatherAnalyzerImpl implements WeatherAnalyzer {
     private final WeatherAnalyzer.View view;
     private final int extremeColdThreshold;
     private final int extremeHeatThreshold;
-    private int maxLookahead;
 
     @Inject
     WeatherAnalyzerImpl(@NonNull View view, @NonNull WeatherAnalyzerParameters parameters) {
         this.view = view;
-        this.maxLookahead = parameters.getMaxLookahead();
         this.extremeColdThreshold = parameters.getExtremeColdThreshold();
         this.extremeHeatThreshold = parameters.getExtremeHeatThreshold();
     }
@@ -25,7 +23,7 @@ class WeatherAnalyzerImpl implements WeatherAnalyzer {
     @Override
     public void onWeatherUpdated(@NonNull WeatherInfo weatherInfo) {
         boolean foundExtreme = false;
-        for (WeatherDatum weatherDatum : weatherInfo.list.subList(0, Math.min(weatherInfo.list.size(), maxLookahead))) {
+        for (WeatherDatum weatherDatum : weatherInfo.list) {
             if (foundExtreme = checkExtremeHeat(weatherDatum)) {
                 view.showExtremeHeat(weatherDatum);
             } else if (foundExtreme = checkExtremeCold(weatherDatum)) {
