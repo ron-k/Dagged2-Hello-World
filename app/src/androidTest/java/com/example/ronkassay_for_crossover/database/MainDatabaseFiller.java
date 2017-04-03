@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.com.example.ronkassay_for_crossover.test.R;
 import com.example.ronkassay_for_crossover.Application;
+import com.example.ronkassay_for_crossover.test.R;
 import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
 import com.google.gson.Gson;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
