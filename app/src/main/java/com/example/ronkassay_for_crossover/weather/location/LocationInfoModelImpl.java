@@ -1,4 +1,4 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.location;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import android.support.annotation.VisibleForTesting;
 import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.common.Strings;
+import com.example.ronkassay_for_crossover.weather.LocationInfo;
 
 import javax.inject.Inject;
 import javax.inject.Named;

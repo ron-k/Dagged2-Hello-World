@@ -1,12 +1,15 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
 import android.support.annotation.NonNull;
+
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
+import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 
 /**
  * Created by Ron Kassay on 2017-04-02.
  */
 
-interface WeatherAnalyzer {
+public interface WeatherAnalyzer {
 
     void onWeatherUpdated(@NonNull WeatherInfo weatherInfo);
 

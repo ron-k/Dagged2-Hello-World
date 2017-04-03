@@ -1,4 +1,4 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
 import android.content.Context;
 import android.os.SystemClock;
@@ -8,7 +8,8 @@ import android.support.annotation.VisibleForTesting;
 
 import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
-import com.example.ronkassay_for_crossover.weather.fetch.WeatherApi;
+import com.example.ronkassay_for_crossover.weather.LocationInfo;
+import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

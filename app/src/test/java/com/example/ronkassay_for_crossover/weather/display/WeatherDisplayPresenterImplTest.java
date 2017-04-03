@@ -5,7 +5,7 @@ import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.TestWeatherApiCall;
 import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModel;
 
 import org.junit.Before;
 import org.junit.Test;

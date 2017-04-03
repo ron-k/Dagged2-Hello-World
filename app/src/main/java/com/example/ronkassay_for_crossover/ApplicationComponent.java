@@ -2,11 +2,11 @@ package com.example.ronkassay_for_crossover;
 
 import android.support.annotation.RestrictTo;
 
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
-import com.example.ronkassay_for_crossover.weather.WeatherModule;
 import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
 import com.example.ronkassay_for_crossover.weather.location.LocationSettingsComponent;
 import com.example.ronkassay_for_crossover.weather.location.LocationSettingsModule;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModule;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.squareup.picasso.Picasso;
 

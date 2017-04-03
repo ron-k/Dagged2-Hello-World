@@ -1,4 +1,4 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,6 +11,7 @@ import android.support.v7.app.NotificationCompat;
 import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.CustomBindingAdapters;
 import com.example.ronkassay_for_crossover.R;
+import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayActivity;
 
 import javax.inject.Inject;

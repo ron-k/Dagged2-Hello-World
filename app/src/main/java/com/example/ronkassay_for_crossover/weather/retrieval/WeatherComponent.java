@@ -1,5 +1,6 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
+import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayComponent;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayModule;
 import com.example.ronkassay_for_crossover.widget.WeatherUpdateService;

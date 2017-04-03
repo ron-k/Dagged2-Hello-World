@@ -1,11 +1,11 @@
 package com.example.ronkassay_for_crossover;
 
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
-import com.example.ronkassay_for_crossover.weather.WeatherModel;
-import com.example.ronkassay_for_crossover.weather.WeatherModule;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayComponent;
 import com.example.ronkassay_for_crossover.weather.display.WeatherDisplayModule;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModule;
 import com.example.ronkassay_for_crossover.widget.WeatherUpdateService;
 
 /**

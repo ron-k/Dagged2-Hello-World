@@ -14,9 +14,9 @@ import android.widget.RemoteViews;
 import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
