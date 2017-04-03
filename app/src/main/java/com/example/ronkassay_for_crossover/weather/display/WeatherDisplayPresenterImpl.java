@@ -6,7 +6,7 @@ import android.support.annotation.VisibleForTesting;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
 import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModel;
 
 import java.io.InvalidObjectException;
 import java.util.Collections;

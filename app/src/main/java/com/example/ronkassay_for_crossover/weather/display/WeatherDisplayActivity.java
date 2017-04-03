@@ -15,9 +15,9 @@ import com.example.ronkassay_for_crossover.Application;
 import com.example.ronkassay_for_crossover.R;
 import com.example.ronkassay_for_crossover.databinding.WeatherDisplayActivityBinding;
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
 import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import com.example.ronkassay_for_crossover.weather.location.LocationSettingsActivity;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
 
 import java.util.List;
 
@@ -26,7 +26,8 @@ import javax.inject.Inject;
 public class WeatherDisplayActivity extends AppCompatActivity implements WeatherDisplayPresenter.View {
 
     private static final String EXTRA_LOCATION_CHANGED = "EXTRA_LOCATION_CHANGED";
-    private final ForecastAdapter forecastAdapter = new ForecastAdapter();
+    @Inject
+    ForecastAdapter forecastAdapter;
     @Inject
     WeatherDisplayPresenter presenter;
 

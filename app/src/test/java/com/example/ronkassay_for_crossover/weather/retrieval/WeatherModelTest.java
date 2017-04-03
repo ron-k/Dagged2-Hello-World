@@ -1,6 +1,8 @@
-package com.example.ronkassay_for_crossover.weather;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
-import com.example.ronkassay_for_crossover.weather.fetch.WeatherApi;
+import com.example.ronkassay_for_crossover.weather.LocationInfo;
+import com.example.ronkassay_for_crossover.weather.TestWeatherApiCall;
+import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 
 import org.junit.Assert;
 import org.junit.Before;

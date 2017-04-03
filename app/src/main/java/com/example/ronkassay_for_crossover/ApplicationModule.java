@@ -7,9 +7,9 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import com.example.ronkassay_for_crossover.database.MainDatabase;
-import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
-import com.example.ronkassay_for_crossover.weather.LocationInfoModelImpl;
 import com.example.ronkassay_for_crossover.weather.location.KnownLocation;
+import com.example.ronkassay_for_crossover.weather.location.LocationInfoModel;
+import com.example.ronkassay_for_crossover.weather.location.LocationInfoModelImpl;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.squareup.picasso.Picasso;
 

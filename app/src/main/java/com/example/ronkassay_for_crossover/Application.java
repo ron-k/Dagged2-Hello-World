@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
-import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
-import com.example.ronkassay_for_crossover.weather.WeatherModule;
+import com.example.ronkassay_for_crossover.weather.location.LocationInfoModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherModule;
 
 import javax.inject.Inject;
 

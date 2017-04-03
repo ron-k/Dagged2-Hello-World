@@ -1,4 +1,4 @@
-package com.example.ronkassay_for_crossover.weather.fetch;
+package com.example.ronkassay_for_crossover.weather.retrieval;
 
 import com.example.ronkassay_for_crossover.weather.WeatherInfo;
 

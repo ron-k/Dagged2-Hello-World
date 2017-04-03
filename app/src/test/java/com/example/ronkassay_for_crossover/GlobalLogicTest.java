@@ -1,8 +1,8 @@
 package com.example.ronkassay_for_crossover;
 
 import com.example.ronkassay_for_crossover.weather.LocationInfo;
-import com.example.ronkassay_for_crossover.weather.LocationInfoModel;
-import com.example.ronkassay_for_crossover.weather.WeatherComponent;
+import com.example.ronkassay_for_crossover.weather.location.LocationInfoModel;
+import com.example.ronkassay_for_crossover.weather.retrieval.WeatherComponent;
 
 import junit.framework.Assert;
 

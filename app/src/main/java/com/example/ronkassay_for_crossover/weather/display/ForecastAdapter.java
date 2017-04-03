@@ -10,11 +10,17 @@ import com.example.ronkassay_for_crossover.weather.WeatherDatum;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by Ron Kassay on 2017-04-01.
  */
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHolder> {
+
+    @Inject
+    public ForecastAdapter() {
+    }
 
     private final List<WeatherDatum> forecastList = new ArrayList<>();
 
