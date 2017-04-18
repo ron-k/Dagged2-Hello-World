@@ -108,6 +108,10 @@ public class GreetingActivityTest {
     }
 
     private Activity getCurrentActivity() {
+        return mActivityTestRule.getActivity();
+    }
+
+    private Activity getCurrentActivity2() {
         final Activity[] activity = new Activity[1];
         onView(isRoot()).check(new ViewAssertion() {
             @Override
@@ -115,6 +119,7 @@ public class GreetingActivityTest {
                 activity[0] = (Activity) view.getContext();
             }
         });
+
         return activity[0];
     }
 }
