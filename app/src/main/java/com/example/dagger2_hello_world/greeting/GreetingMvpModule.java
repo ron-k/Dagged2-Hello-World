@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by ABiS on 2017-03-03.
+ *
  */
 @Module
 class GreetingMvpModule {

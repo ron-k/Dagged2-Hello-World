@@ -7,7 +7,7 @@ import com.example.model.Greeting;
 import javax.inject.Inject;
 
 /**
- * Created by ABiS on 2017-03-03.
+ *
  */
 
 class PresentorImpl implements Presentor {

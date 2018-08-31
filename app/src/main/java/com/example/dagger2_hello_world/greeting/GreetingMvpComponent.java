@@ -5,7 +5,7 @@ import com.example.dagger2_hello_world.ApplicationModule;
 import dagger.Component;
 
 /**
- * Created by ABiS on 2017-03-03.
+ *
  */
 
 @GreetingScope

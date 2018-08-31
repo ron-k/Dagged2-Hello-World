@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import dagger.internal.Preconditions;
 
 /**
- * Created by ABiS on 2017-03-03.
+ *
  */
 
 public class Application extends android.app.Application {

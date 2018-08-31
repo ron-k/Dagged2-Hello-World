@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Created by ABiS on 2017-03-03.
+ *
  */
 
 class GreetingModel {
