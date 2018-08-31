@@ -8,7 +8,7 @@ import com.example.model.Greeting;
  *
  */
 
-interface Presentor {
+interface Presenter {
     void updateGreeting();
 
     interface View {

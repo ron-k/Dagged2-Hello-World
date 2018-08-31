@@ -10,20 +10,20 @@ import dagger.Provides;
  */
 @Module
 class GreetingMvpModule {
-    private final Presentor.View view;
+    private final Presenter.View view;
 
-    GreetingMvpModule(@NonNull Presentor.View view) {
+    GreetingMvpModule(@NonNull Presenter.View view) {
         this.view = view;
     }
 
     @Provides
-    public Presentor.View getView() {
+    public Presenter.View getView() {
         return view;
     }
 
     @NonNull
     @Provides
-    Presentor getPresentor(@NonNull PresentorImpl presentorImpl) {
-        return presentorImpl;
+    Presenter getPresenter(@NonNull PresenterImpl presenterImpl) {
+        return presenterImpl;
     }
 }

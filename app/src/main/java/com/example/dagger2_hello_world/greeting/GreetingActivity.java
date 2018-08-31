@@ -14,10 +14,10 @@ import javax.inject.Inject;
 import dagger.Module;
 
 @Module
-public class GreetingActivity extends AppCompatActivity implements Presentor.View {
+public class GreetingActivity extends AppCompatActivity implements Presenter.View {
 
     @Inject
-    Presentor greetingPresentor;
+    Presenter greetingPresenter;
     private TextView mainTextView;
 
     @Override
@@ -34,7 +34,7 @@ public class GreetingActivity extends AppCompatActivity implements Presentor.Vie
     @Override
     protected void onResume() {
         super.onResume();
-        greetingPresentor.updateGreeting();
+        greetingPresenter.updateGreeting();
     }
 
     @Override

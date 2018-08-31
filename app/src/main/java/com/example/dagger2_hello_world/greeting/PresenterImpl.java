@@ -10,7 +10,7 @@ import javax.inject.Inject;
  *
  */
 
-class PresentorImpl implements Presentor {
+class PresenterImpl implements Presenter {
     private final View view;
     @NonNull
     private final GreetingModel greetingModel;
@@ -18,7 +18,7 @@ class PresentorImpl implements Presentor {
     private final UserAgeModel userAgeModel;
 
     @Inject
-    PresentorImpl(@NonNull View view, @NonNull GreetingModel greetingModel, @NonNull UserAgeModel userAgeModel) {
+    PresenterImpl(@NonNull View view, @NonNull GreetingModel greetingModel, @NonNull UserAgeModel userAgeModel) {
         this.view = view;
         this.greetingModel = greetingModel;
         this.userAgeModel = userAgeModel;
