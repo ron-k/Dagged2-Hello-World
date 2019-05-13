@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.dagger2_hello_world"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-    def version_androidSupportLib="27.1.1"
+    def version_androidSupportLib="28.0.0"
     def version_dagger="2.17"
 
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
