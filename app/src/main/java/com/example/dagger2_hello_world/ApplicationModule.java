@@ -5,22 +5,26 @@ import android.support.annotation.NonNull;
 
 import javax.inject.Named;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ApplicationModule {
+public abstract class ApplicationModule {
 
     @Provides
     @NonNull
-    static Application application() {
+    static Application myApplication() {
         return Application.getInstance();
     }
 
-    @Provides
+
+    @Binds
     @NonNull
     @Named(ApplicationScope.TAG)
-    static Context context() {
-        return Application.getInstance();
-    }
+    abstract Context context(Application application);
+
+    @Binds
+    @NonNull
+    abstract android.app.Application application(Application application);
 }

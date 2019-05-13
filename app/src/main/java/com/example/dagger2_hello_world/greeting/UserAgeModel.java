@@ -1,15 +1,11 @@
 package com.example.dagger2_hello_world.greeting;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-
-import com.example.dagger2_hello_world.ApplicationScope;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -20,14 +16,10 @@ public class UserAgeModel {
     private final SharedPreferences sharedPreferences;
     private final String spkey_firstRunTime = "spkey.UserAgeModel.firstRunTime";
 
+    @Inject
     UserAgeModel(@NonNull SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
         setUserAgeIfAbsent();
-    }
-
-    @Inject
-    UserAgeModel(@Named(ApplicationScope.TAG) Context context) {
-        this(context.getSharedPreferences(GreetingScope.TAG, Context.MODE_PRIVATE));
     }
 
     public long getUserAgeMillis() {
