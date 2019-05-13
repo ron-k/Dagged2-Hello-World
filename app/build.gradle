@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -22,7 +24,7 @@ dependencies {
     def version_androidSupportLib="27.1.1"
     def version_dagger="2.17"
 
-    annotationProcessor "com.google.dagger:dagger-compiler:$version_dagger"
+    kapt "com.google.dagger:dagger-compiler:$version_dagger"
     compile "com.google.dagger:dagger:$version_dagger"
 
     compile fileTree(dir: "libs", include: ["*.jar"])
@@ -38,5 +40,6 @@ dependencies {
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: "com.android.support", module: "support-annotations"
     }
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
